@@ -1,4 +1,5 @@
 /.vscode
 /.zed
-/.github
 /.env
+/tmp
+/public/uploads
