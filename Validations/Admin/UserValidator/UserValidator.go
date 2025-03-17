@@ -8,11 +8,32 @@ import (
 
 // map[string]([](Rules.ValidationRule))
 func Store() func(c *fiber.Ctx) error {
-    rules := make(map[string]([](Rules.ValidationRule)))
-    rules["first_name"] = [](Rules.ValidationRule){ Rules.Required }
-    rules["last_name"] = [](Rules.ValidationRule){ Rules.Nullable }
-    rules["email"] = [](Rules.ValidationRule){ Rules.Email }
-    return Middlewares.ValidationMiddleware(rules)
+    return Middlewares.ValidationMiddleware([]Rules.FieldRules{
+        {
+            FieldName: "first_name",
+            Rules: []Rules.ValidationRule{ Rules.Required, Rules.LengthBetween(2, 255) },
+        },
+        {
+            FieldName: "last_name",
+            Rules: []Rules.ValidationRule{ Rules.Nullable, Rules.LengthBetween(2, 255) },
+        },
+        {
+            FieldName: "image",
+            Rules: []Rules.ValidationRule{ Rules.Required, Rules.File, Rules.Mimes("jpg", "jpeg", "png"), Rules.MaxSize(1000) },
+        },
+        {
+            FieldName: "email",
+            Rules: []Rules.ValidationRule{ Rules.Required, Rules.Email, Rules.LengthBetween(2, 255), Rules.Unique("email", "users") },
+        },
+        {
+            FieldName: "phone",
+            Rules: []Rules.ValidationRule{ Rules.Required, Rules.Regex(`09\d{9}`), Rules.Unique("phone", "users") },
+        },
+        {
+            FieldName: "password",
+            Rules: []Rules.ValidationRule{ Rules.Required, Rules.LengthBetween(8, 16) },
+        },
+    })
 }
 
 func UpdateValidator() [](func()) {
