@@ -21,9 +21,13 @@ func SetupRoutes(app *fiber.App) {
     userGroup.Get("/show/:id", UserController.Show).Name("app.user.show")
     userGroup.Post("/store", UserValidator.Store(), UserController.Store).Name("app.user.store")
 
+    /* Static file rendering */
+    app.Static("/", "public")
+
+    /* Not found reponse */
     app.Use("*", func(c *fiber.Ctx) error {
         return c.Status(404).JSON(fiber.Map{
-            "message": "Not found !",
+            "message": "Not found",
         })
     })
 }
