@@ -4,6 +4,7 @@
         "last_name": "نام خانوادگی",
         "phone": "شماره تلفن",
         "email": "ایمیل",
+        "password": "گذرواژه",
         "image": "تصویر"
     },
     "messages": {
@@ -20,7 +21,7 @@
         "length": "طول {field} باید {length} کاراکتر باشد",
         "maxLength": "حد اکثر طول {field} باید {max} کاراکتر باشد",
         "minLength": "حد اقل طول {field} باید {min} کاراکتر باشد",
-        "lengthBetween": "طول {field} باید حد اقل {min} و حد اکثر {max} باشد",
+        "lengthBetween": "طول {field} باید حد اقل {min} و حد اکثر {max} کاراکتر باشد",
 
         "number": "{field} باید عدد باشد",
         "max": "مقدار بیشینه مجاز برای {field} {max} میباشد",
@@ -30,8 +31,8 @@
         "file": "{field} باید یک فایل باشد",
         "fileSize": "اندازه بیشینه مجاز برای فایل {field} {size} KB است",
         "mimes": "هستند {options} پسوند های معتبر برای فایل {field}",
-        "sizeBetween": "اندازه فایل برای {field} باید میان {min} و {max} KB باشد",
-        "maxSize": "است KB{max} مقدار بیشینه مجاز برای فایل {field}",
-        "minSize": "مقدار کمینه مجاز برای  {field} {min} KB است"
+        "sizeBetween": "اندازه فایل برای {field} باید کمینه {min} و بیشینه {max} کیلوبایت باشد",
+        "maxSize": "مقدار بیشینه ی مجاز برای {field} {max} کیلوبایت است",
+        "minSize": "مقدار کمینه ی مجاز برای {field} {min} کیلوبایت است"
     }
 }
