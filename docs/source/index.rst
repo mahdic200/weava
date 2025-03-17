@@ -1,5 +1,5 @@
 ############################################
-Welcome to GoFiber-Template's Documentation!
+Welcome to Weava's Documentation!
 ############################################
 
 .. note::

@@ -3,8 +3,8 @@ package main
 import (
 	"log"
 
-	"github.com/mahdic200/gofiber-template/Config"
-	"github.com/mahdic200/gofiber-template/Routes"
+	"github.com/mahdic200/weava/Config"
+	"github.com/mahdic200/weava/Routes"
 
 	"github.com/gofiber/fiber/v2"
 )

@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	db "github.com/mahdic200/gofiber-template/Config"
-	models "github.com/mahdic200/gofiber-template/Models"
+	db "github.com/mahdic200/weava/Config"
+	models "github.com/mahdic200/weava/Models"
 
 	"time"
 

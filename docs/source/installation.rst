@@ -2,9 +2,9 @@
 Installation
 ############
 
-As you can see , the ``GoFiber-Template`` is not a package , or module , it's a code template and architecture for you to make your job easier . in fact , there is nothing special about installing it , actually it's just downloading and placing it in a folder and initiating it .
+As you can see , the ``Weava`` is not a package , or module , it's a code template and architecture for you to make your job easier . in fact , there is nothing special about installing it , actually it's just downloading and placing it in a folder and initiating it .
 
-Open GoFiber-Template's `repository <https://github.com/mahdic200/gofiber-template>`_ and download the code . place it in somewhere you usually use for coding , like ``~/web-development`` folder .
+Open Weava's `repository <https://github.com/mahdic200/weava>`_ and download the code . place it in somewhere you usually use for coding , like ``~/web-development`` folder .
 
 Open the project with VSCode or any other editor you are comfortable with .
 Copy the ``.env.example`` file and rename it to ``.env`` .
@@ -59,5 +59,5 @@ Now put the password of your PostgreSQL user in ``DB_PASSWORD`` just like the ``
 
 Do the same for your PostgreSQL's port and host and database name in ``DB_PORT``, ``DB_HOST`` and ``DB_DBNAME`` variables respectively .
 
-Congratulations ! you are done setting up your very first project with **GoFiber-Template** !
+Congratulations ! you are done setting up your very first project with **Weava** !
 

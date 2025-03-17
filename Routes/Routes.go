@@ -1,11 +1,11 @@
 package Routes
 
 import (
-	"github.com/mahdic200/gofiber-template/Controllers/AuthController"
-	"github.com/mahdic200/gofiber-template/Controllers/UserController"
-	"github.com/mahdic200/gofiber-template/Validations/Admin/UserValidator"
+	"github.com/mahdic200/weava/Controllers/AuthController"
+	"github.com/mahdic200/weava/Controllers/UserController"
+	"github.com/mahdic200/weava/Validations/Admin/UserValidator"
 
-	// "github.com/mahdic200/gofiber-template/Middlewares/Auth"
+	// "github.com/mahdic200/weava/Middlewares/Auth"
 
 	"github.com/gofiber/fiber/v2"
 )

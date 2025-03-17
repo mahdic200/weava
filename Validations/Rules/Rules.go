@@ -7,8 +7,8 @@ import (
 	"strings"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/mahdic200/gofiber-template/Config"
-	"github.com/mahdic200/gofiber-template/Providers/Validation"
+	"github.com/mahdic200/weava/Config"
+	"github.com/mahdic200/weava/Providers/Validation"
 )
 
 type ValidationRule func(c *fiber.Ctx, field_name string) (passed bool, message string, flags map[string]bool, err error)

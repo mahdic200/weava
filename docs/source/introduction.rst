@@ -2,7 +2,7 @@
 Introduction
 ############
 
-What is GoFiber-Template ?
+What is Weava ?
 --------------------------
 
 This project is a ready-to-use back-end project for GO API system development ! it is made to make your life easier working with GO fiber package . it uses MVC architecture . a simple , yet very powerful code which is ready to use .

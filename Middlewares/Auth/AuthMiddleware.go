@@ -3,7 +3,7 @@ package Auth
 import (
 	"strings"
 
-	"github.com/mahdic200/gofiber-template/Utils"
+	"github.com/mahdic200/weava/Utils"
 
 	"github.com/gofiber/fiber/v2"
 )

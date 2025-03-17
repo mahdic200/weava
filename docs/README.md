@@ -1,6 +1,6 @@
-# Documentations for GoFiber-Template
+# Documentations for Weava
 
-This is the source code for building `GoFiber-Template` manual and you can make the newest version of docs for yourself locally or contribute to this project , which will be really appreciated ;) .
+This is the source code for building `Weava` manual and you can make the newest version of docs for yourself locally or contribute to this project , which will be really appreciated ;) .
 
 Let's get our hands on !
 

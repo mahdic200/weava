@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/mahdic200/gofiber-template/Config"
+	"github.com/mahdic200/weava/Config"
 )
 
 func GetValidationLangKey() (lang string, err error) {

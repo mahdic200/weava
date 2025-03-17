@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'GoFiber-Template'
+project = 'Weava'
 copyright = '2025, mahdic200'
 author = 'mahdic200'
 

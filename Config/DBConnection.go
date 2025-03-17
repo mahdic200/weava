@@ -3,7 +3,7 @@ package Config
 import (
 	"fmt"
 
-	"github.com/mahdic200/gofiber-template/Models"
+	"github.com/mahdic200/weava/Models"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
