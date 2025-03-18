@@ -2,22 +2,14 @@ package UserController
 
 import (
 	"os"
+	"time"
 
+	"github.com/gofiber/fiber/v2"
 	db "github.com/mahdic200/weava/Config"
 	models "github.com/mahdic200/weava/Models"
 	"github.com/mahdic200/weava/Services/FileService"
 	"github.com/mahdic200/weava/Utils"
-
-	"time"
-
-	"github.com/gofiber/fiber/v2"
 )
-
-func Index(c *fiber.Ctx) error {
-    return c.Status(200).JSON(fiber.Map{
-        "message": "hello pretty !",
-    })
-}
 
 func Store(c *fiber.Ctx) error {
     tx := db.DB.Begin()
@@ -80,31 +72,5 @@ func Store(c *fiber.Ctx) error {
     }
     return c.Status(200).JSON(fiber.Map{
         "message": "user created successfully !",
-    })
-}
-
-func Show(c *fiber.Ctx) error {
-    id := c.Params("id")
-    var user models.User
-    db.DB.Select("id,name,password").Where("id=?", id).First(&user)
-    if user.Id == 0 {
-        return c.Status(404).JSON(fiber.Map{
-            "message": "! کاربر مورد نظر یافت نشد",
-        })
-    }
-    // user_data = make(map[string]interface {})
-    return c.Status(200).JSON(fiber.Map{
-        "message": "this is your user !",
-        "data": user,
-    })
-}
-
-func Update(c *fiber.Ctx) error {
-    // id := c.Params("id")
-    // var user models.User
-
-    db.DB.Select("id,name")
-    return c.Status(200).JSON(fiber.Map{
-        "message": "",
     })
 }
