@@ -2,14 +2,14 @@ package UserController
 
 import (
 	db "github.com/mahdic200/weava/Config"
-	models "github.com/mahdic200/weava/Models"
+	"github.com/mahdic200/weava/Models"
 
 	"github.com/gofiber/fiber/v2"
 )
 
 func Show(c *fiber.Ctx) error {
     id := c.Params("id")
-    var user models.User
+    var user Models.User
     db.DB.Select("id,name,password").Where("id=?", id).First(&user)
     if user.Id == 0 {
         return c.Status(404).JSON(fiber.Map{
