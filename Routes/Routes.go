@@ -2,7 +2,7 @@ package Routes
 
 import (
 	"github.com/mahdic200/weava/Controllers/AuthController"
-	"github.com/mahdic200/weava/Controllers/UserController"
+	"github.com/mahdic200/weava/Controllers/Admin/UserController"
 	"github.com/mahdic200/weava/Validations/Admin/UserValidator"
 
 	// "github.com/mahdic200/weava/Middlewares/Auth"
