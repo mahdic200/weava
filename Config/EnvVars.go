@@ -6,6 +6,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
+const APP_BASEURL="APP_BASEURL"
 const DB_PORT="DB_PORT"
 const DB_HOST="DB_HOST"
 const DB_DBNAME="DB_DBNAME"
@@ -15,7 +16,8 @@ const VALIDATION_LANG="VALIDATION_LANG"
 const JWT_SECRET="JWT_SECRET"
 
 type EnvVarsInterface struct {
-    DB_PORT   string
+    APP_BASEURL string
+    DB_PORT string
     DB_HOST string
     DB_DBNAME string
     DB_USER string
@@ -27,6 +29,7 @@ type EnvVarsInterface struct {
 func GetEnv() EnvVarsInterface {
     godotenv.Load()
     return EnvVarsInterface{
+        APP_BASEURL: os.Getenv(APP_BASEURL),
         DB_PORT: os.Getenv(DB_PORT),
         DB_HOST: os.Getenv(DB_HOST),
         DB_DBNAME: os.Getenv(DB_DBNAME),
