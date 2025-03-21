@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"github.com/mahdic200/weava/Models"
+	"github.com/mahdic200/weava/Utils"
 )
 
 type User struct {
@@ -24,7 +25,7 @@ func Single(user Models.User) User {
         Last_name: user.Last_name,
         Email: user.Email,
         Phone: user.Phone,
-        Image: user.Image,
+        Image: Utils.ImageUrlOrDefault(user.Image),
         Created_at: user.Created_at,
         Updated_at: user.Updated_at,
     }
