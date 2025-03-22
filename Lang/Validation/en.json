@@ -3,7 +3,7 @@
     "messages": {
         "required": "{field} is required",
         "unique": "{field} must be unique",
-        "sometimes": "{field} must be is required",
+        "sometimes": "{field} must not be empty value",
         "exists": "{field} does not exist in",
         "inArray": "{field} must be one of these : {options}",
         "notInArray": "{field} must not be one of these : {options}",

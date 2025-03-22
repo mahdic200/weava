@@ -10,7 +10,7 @@
     "messages": {
         "required": "{field} اجباری است",
         "unique": "این {field} قبلا ثبت شده است",
-        "sometimes": "{field} اجباری است",
+        "sometimes": "{field} نباید خالی باشد",
         "exists": "{field} وجود ندارد",
         "inArray": "{field} باید یکی از این موارد باشد : {options}",
         "notInArray": "{field} نباید یکی از این موارد باشد : {options}",
