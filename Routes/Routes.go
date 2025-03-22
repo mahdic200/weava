@@ -3,7 +3,7 @@ package Routes
 import (
 	"github.com/mahdic200/weava/Controllers/AuthController"
 	"github.com/mahdic200/weava/Controllers/Admin/UserController"
-	"github.com/mahdic200/weava/Validations/Admin/UserValidator"
+	"github.com/mahdic200/weava/Validations/Admin/UserValidation"
 
 	// "github.com/mahdic200/weava/Middlewares/Auth"
 
@@ -19,7 +19,7 @@ func SetupRoutes(app *fiber.App) {
     userGroup := adminGroup.Group("user")
     userGroup.Get("/", UserController.Index).Name("app.user.index")
     userGroup.Get("/show/:id", UserController.Show).Name("app.user.show")
-    userGroup.Post("/store", UserValidator.Store(), UserController.Store).Name("app.user.store")
+    userGroup.Post("/store", UserValidation.Store(), UserController.Store).Name("app.user.store")
 
     /* Static file rendering */
     app.Static("/", "public")

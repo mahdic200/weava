@@ -13,7 +13,7 @@ For routing you can simply use ``Routes/Routes.go`` file . open it and you can s
         userGroup := adminGroup.Group("user")
         userGroup.Get("/", UserController.Index).Name("app.user.index")
         userGroup.Get("/show/:id", UserController.Show).Name("app.user.show")
-        userGroup.Post("/store", UserValidator.Store(), UserController.Store).Name("app.user.store")
+        userGroup.Post("/store", UserValidation.Store(), UserController.Store).Name("app.user.store")
 
         app.Use("*", func(c *fiber.Ctx) error {
             return c.Status(404).JSON(fiber.Map{

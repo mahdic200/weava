@@ -2,7 +2,7 @@ package Middlewares
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/mahdic200/weava/Validations/Rules"
+	"github.com/mahdic200/weava/Rules"
 )
 
 /* Our middleware for validating form-data requests , it iterates all over on your defined validators in

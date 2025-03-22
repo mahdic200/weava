@@ -1,12 +1,11 @@
-package UserValidator
+package UserValidation
 
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/mahdic200/weava/Middlewares"
-	"github.com/mahdic200/weava/Validations/Rules"
+	"github.com/mahdic200/weava/Rules"
 )
 
-// map[string]([](Rules.ValidationRule))
 func Store() func(c *fiber.Ctx) error {
     return Middlewares.ValidationMiddleware([]Rules.FieldRules{
         {
