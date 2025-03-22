@@ -4,7 +4,7 @@ import (
 	"os"
 
 	"github.com/gofiber/fiber/v2"
-	db "github.com/mahdic200/weava/Config"
+	"github.com/mahdic200/weava/Config"
 	"github.com/mahdic200/weava/Models/User"
 	"github.com/mahdic200/weava/Services/FileService"
 	"github.com/mahdic200/weava/Utils"
@@ -12,7 +12,7 @@ import (
 )
 
 func Store(c *fiber.Ctx) error {
-    tx := db.DB.Begin()
+    tx := Config.DB.Begin()
     defer func() {
         if r := recover(); r != nil {
             tx.Rollback()
