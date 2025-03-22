@@ -38,15 +38,16 @@ func Sometimes(c *fiber.Ctx, field_name string) (passed bool, message string, fl
         return false, "", nil, err
     }
     value := form.Value[field_name]
+    file := form.File[field_name]
     message, err = Validation.ErrorMessageProvider(field_name, "sometimes", nil)
     if err != nil {
         return false, "", nil, err
     }
     flags = make(map[string]bool)
     flags["itsnull"] = true
-    if value == nil {
+    if value == nil && file == nil {
         return true, "", flags, nil
-    } else if value[0] == "" {
+    } else if value != nil && value[0] == "" {
         return false, message, nil, nil
     }
     return true, "", nil, nil
