@@ -35,7 +35,7 @@ func ValidationMiddleware(schema []Rules.FieldRules) func(c *fiber.Ctx) error {
 				/* The it's null flag is so important and if the Nullable rules exists in the array, which
 				   it must be the first rule in the list , we simply skip all other rules in the list for
 				   current field_name, rules that can issue this flag are Sometimes and Nullable */
-				if passed && (flags.IsNull) {
+				if passed && (flags != nil && flags.IsNull) {
 					break
 				} else if !passed {
 					return c.Status(400).JSON(fiber.Map{
