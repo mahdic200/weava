@@ -22,7 +22,7 @@ func Mimes(array ...string) ValidationRule {
 		if err != nil {
 			return false, "", nil, err
 		}
-		if !slices.Contains(array, FileService.GetFileExtension(value.Filename)) {
+		if !slices.Contains(array, strings.ToLower(FileService.GetFileExtension(value.Filename))) {
 			return false, message, nil, nil
 		}
 		return true, "", nil, nil
