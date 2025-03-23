@@ -14,6 +14,7 @@ func SetupRoutes(app *fiber.App) {
 	userGroup.Get("/", UserController.Index).Name("admin.user.index")
 	userGroup.Get("/show/:id", UserController.Show).Name("admin.user.show")
 	userGroup.Post("/store", UserValidation.Store(), UserController.Store).Name("admin.user.store")
+	userGroup.Post("/update/:id", UserValidation.Update(), UserController.Update).Name("admin.user.update")
 
 	/* Static file rendering */
 	app.Static("/", "public")
