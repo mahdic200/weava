@@ -15,3 +15,4 @@ Table of Contents
    prerequisites
    installation
    getting_started/index
+   why_minimal
