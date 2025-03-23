@@ -17,7 +17,7 @@ func Mimes(array ...string) ValidationRule {
 			return false, "", nil, fmt.Errorf("error , Mines Rule : %s", err)
 		}
 		otherKeys := make(map[string]string)
-		otherKeys["{mimes}"] = strings.Join(array, " , ")
+		otherKeys["{options}"] = strings.Join(array, " , ")
 		message, err = Validation.ErrorMessageProvider(field_name, "mimes", otherKeys)
 		if err != nil {
 			return false, "", nil, err
