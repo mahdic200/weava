@@ -1,0 +1,4 @@
+# This is the pip version that I used , so I just left it here for anyone who might ask
+# pip==25.0.1
+sphinx-autobuild==2024.10.3
+furo==2024.8.6
