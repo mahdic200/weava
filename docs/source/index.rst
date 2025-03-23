@@ -14,3 +14,4 @@ Table of Contents
    introduction
    prerequisites
    installation
+   getting_started/index
