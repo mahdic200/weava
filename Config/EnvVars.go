@@ -14,6 +14,7 @@ var (
 	DB_USER     string
 	DB_PASSWORD string
 	TIMEZONE    string
+	JWT_KEY  string
 )
 
 func GetEnv() error {
@@ -28,5 +29,6 @@ func GetEnv() error {
 	DB_USER = os.Getenv("DB_USER")
 	DB_PASSWORD = os.Getenv("DB_PASSWORD")
 	TIMEZONE = os.Getenv("TIMEZONE")
+	JWT_KEY = os.Getenv("JWT_KEY")
 	return nil
 }
