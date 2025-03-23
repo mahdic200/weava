@@ -7,6 +7,7 @@ import (
 	"github.com/mahdic200/weava/Config"
 	"github.com/mahdic200/weava/Models"
 	"github.com/mahdic200/weava/Models/User"
+	"github.com/mahdic200/weava/Providers"
 	"github.com/mahdic200/weava/Services/FileService"
 	"github.com/mahdic200/weava/Utils"
 	"github.com/mahdic200/weava/Utils/File"
@@ -29,7 +30,7 @@ func Update(c *fiber.Ctx) error {
 	}()
 	if tx.Error != nil {
 		return c.Status(500).JSON(fiber.Map{
-			"message": "Internal server error",
+			"message": Providers.ErrorProvider(tx.Error),
 		})
 	}
 
@@ -74,7 +75,7 @@ func Update(c *fiber.Ctx) error {
 		if err != nil {
 			tx.Rollback()
 			return c.Status(500).JSON(fiber.Map{
-				"message": "Internal server error",
+				"message": Providers.ErrorProvider(err),
 			})
 		}
 	}
@@ -85,7 +86,7 @@ func Update(c *fiber.Ctx) error {
 			os.Remove(new_file)
 		}
 		return c.Status(500).JSON(fiber.Map{
-			"message": "Internal server error !",
+			"message": Providers.ErrorProvider(err),
 		})
 	}
 	if err := tx.Commit().Error; err != nil {
@@ -94,7 +95,7 @@ func Update(c *fiber.Ctx) error {
 			os.Remove(new_file)
 		}
 		return c.Status(500).JSON(fiber.Map{
-			"message": "Internal server error",
+			"message": Providers.ErrorProvider(err),
 		})
 	}
 	os.Remove(old_file)

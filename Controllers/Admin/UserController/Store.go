@@ -6,6 +6,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/mahdic200/weava/Config"
 	"github.com/mahdic200/weava/Models/User"
+	"github.com/mahdic200/weava/Providers"
 	"github.com/mahdic200/weava/Services/FileService"
 	"github.com/mahdic200/weava/Utils"
 	"github.com/mahdic200/weava/Utils/Http"
@@ -20,7 +21,7 @@ func Store(c *fiber.Ctx) error {
 	}()
 	if tx.Error != nil {
 		return c.Status(500).JSON(fiber.Map{
-			"message": "Internal server error",
+			"message": Providers.ErrorProvider(tx.Error),
 		})
 	}
 	/* Parsing body */
@@ -53,24 +54,24 @@ func Store(c *fiber.Ctx) error {
 	if err != nil {
 		tx.Rollback()
 		return c.Status(500).JSON(fiber.Map{
-			"message": "Internal server error",
+			"message": Providers.ErrorProvider(err),
 		})
 	}
 	if err := User.Create(tx, data).Error; err != nil {
 		tx.Rollback()
 		os.Remove(fs.GetFinalPath())
 		return c.Status(500).JSON(fiber.Map{
-			"message": "Internal server error !",
+			"message": Providers.ErrorProvider(err),
 		})
 	}
 	if err := tx.Commit().Error; err != nil {
 		tx.Rollback()
 		os.Remove(fs.GetFinalPath())
 		return c.Status(500).JSON(fiber.Map{
-			"message": "Internal server error",
+			"message": Providers.ErrorProvider(err),
 		})
 	}
 	return c.Status(200).JSON(fiber.Map{
-		"message": "user created successfully !",
+		"message": "User created successfully !",
 	})
 }

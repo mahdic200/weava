@@ -2,6 +2,7 @@ package Middlewares
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/mahdic200/weava/Providers"
 	"github.com/mahdic200/weava/Rules"
 )
 
@@ -29,7 +30,7 @@ func ValidationMiddleware(schema []Rules.FieldRules) func(c *fiber.Ctx) error {
 				passed, message, flags, err := rule(c, field_rules.FieldName)
 				if err != nil {
 					return c.Status(500).JSON(fiber.Map{
-						"message": "Internal server error",
+						"message": Providers.ErrorProvider(err),
 					})
 				}
 				/* The it's null flag is so important and if the Nullable rules exists in the array, which
