@@ -1,2 +1,6 @@
 /.vscode
+/.zed
 /.env
+/tmp
+/public/uploads
+/public/user_default_profile
