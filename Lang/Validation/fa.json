@@ -1,0 +1,38 @@
+{
+    "fields": {
+        "first_name": "نام",
+        "last_name": "نام خانوادگی",
+        "phone": "شماره تلفن",
+        "email": "ایمیل",
+        "password": "گذرواژه",
+        "image": "تصویر"
+    },
+    "messages": {
+        "required": "{field} اجباری است",
+        "unique": "این {field} قبلا ثبت شده است",
+        "sometimes": "{field} نباید خالی باشد",
+        "exists": "{field} وجود ندارد",
+        "inArray": "{field} باید یکی از این موارد باشد : {options}",
+        "notInArray": "{field} نباید یکی از این موارد باشد : {options}",
+
+        "email": "{field} باید نشانی یک ایمیل معتبر باشد",
+        "numeric": "{field} باید رشته ایی از اعداد باشد",
+        "regex": "فرمت {field} نادرست است",
+        "length": "طول {field} باید {length} کاراکتر باشد",
+        "maxLength": "حد اکثر طول {field} باید {max} کاراکتر باشد",
+        "minLength": "حد اقل طول {field} باید {min} کاراکتر باشد",
+        "lengthBetween": "طول {field} باید حد اقل {min} و حد اکثر {max} کاراکتر باشد",
+
+        "number": "{field} باید عدد باشد",
+        "max": "مقدار بیشینه مجاز برای {field} {max} میباشد",
+        "min": "مقدار کمینه مجاز برای {field} {min} میباشد",
+        "between": "{field} باید میان {min} و {max} باشد",
+
+        "file": "{field} باید یک فایل باشد",
+        "fileSize": "اندازه بیشینه مجاز برای فایل {field} {size} KB است",
+        "mimes": "هستند {options} پسوند های معتبر برای فایل {field}",
+        "sizeBetween": "اندازه فایل برای {field} باید کمینه {min} و بیشینه {max} کیلوبایت باشد",
+        "maxSize": "مقدار بیشینه ی مجاز برای {field} {max} کیلوبایت است",
+        "minSize": "مقدار کمینه ی مجاز برای {field} {min} کیلوبایت است"
+    }
+}
