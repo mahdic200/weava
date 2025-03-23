@@ -7,6 +7,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/mahdic200/weava/Config"
+	"github.com/mahdic200/weava/Routes"
 )
 
 func main() {
@@ -17,6 +18,8 @@ func main() {
 		fmt.Printf("%v\n", err.Error())
 		os.Exit(2)
 	}
+
+	Routes.SetupRoutes(app)
 
 	log.Fatal(app.Listen(":8000"))
 }
