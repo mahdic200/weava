@@ -10,16 +10,6 @@ import (
 	"github.com/mahdic200/weava/Utils/File"
 )
 
-func IsFileExist(path string) bool {
-	info, err := os.Stat(path)
-	if os.IsNotExist(err) {
-		return false
-	} else if info.IsDir() {
-		return false
-	}
-	return true
-}
-
 func PathToUrl(path string) string {
 	sliced := strings.Split(path, string(filepath.Separator))
 	url := strings.Join(sliced, "/")
@@ -46,7 +36,7 @@ func UserDefaultImage() string {
 
 func ImageUrlOrDefault(relative_path string) string {
 	abs_path := File.PublicPath(relative_path)
-	if !IsFileExist(abs_path) {
+	if !File.Exists(abs_path) {
 		return PathToHttpUrl(UserDefaultImage())
 	}
 	return PathToHttpUrl(relative_path)
