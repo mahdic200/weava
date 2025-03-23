@@ -11,6 +11,7 @@ func SetupRoutes(app *fiber.App) {
 
     userGroup := adminGroup.Group("/user")
     userGroup.Get("/", UserController.Index).Name("admin.user.index")
+    userGroup.Get("/show/:id", UserController.Show).Name("admin.user.show")
 
     /* Static file rendering */
     app.Static("/", "public")
