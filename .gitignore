@@ -1,6 +1,7 @@
 /.vscode
 /.zed
 /.env
+/.air.toml
 /tmp
 /public/uploads
 /public/user_default_profile
