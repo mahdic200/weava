@@ -1,0 +1,31 @@
+{
+    "fields": {},
+    "messages": {
+        "required": "{field} is required",
+        "unique": "{field} must be unique",
+        "sometimes": "{field} must not be empty value",
+        "exists": "{field} does not exist in",
+        "inArray": "{field} must be one of these : {options}",
+        "notInArray": "{field} must not be one of these : {options}",
+
+        "email": "{field} value must be a valid email address",
+        "numeric": "{field} value must be numeric",
+        "regex": "{field} format is incorrect",
+        "length": "{field} length must be {length} characters",
+        "maxLength": "maximum length for {field} is {max}",
+        "minLength": "minimum length for {field} is {min}",
+        "lengthBetween": "{field} value length must be between {min} and {max}",
+
+        "number": "{field} must be number",
+        "max": "maximum value for {field} is {max}",
+        "min": "minimum value for {field} is {min}",
+        "between": "{field} value must be between {min} and {max}",
+
+        "file": "{field} must be a file",
+        "fileSize": "{field} file size must be exactly {size} KB",
+        "mimes": "valid file types for {field} are {options}",
+        "sizeBetween": "{field} file size must be between {min} and {max}",
+        "maxSize": "maximum file size for {field} is {max} KB",
+        "minSize": "minimum file size for {field} is {min} KB"
+    }
+}
