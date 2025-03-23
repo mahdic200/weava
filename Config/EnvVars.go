@@ -7,14 +7,15 @@ import (
 )
 
 var (
-	APP_BASEURL string
-	DB_HOST     string
-	DB_PORT     string
-	DB_NAME     string
-	DB_USER     string
-	DB_PASSWORD string
-	TIMEZONE    string
-	JWT_KEY  string
+	APP_BASEURL     string
+	DB_HOST         string
+	DB_PORT         string
+	DB_NAME         string
+	DB_USER         string
+	DB_PASSWORD     string
+	TIMEZONE        string
+	JWT_KEY         string
+	VALIDATION_LANG string
 )
 
 func GetEnv() error {
@@ -30,5 +31,6 @@ func GetEnv() error {
 	DB_PASSWORD = os.Getenv("DB_PASSWORD")
 	TIMEZONE = os.Getenv("TIMEZONE")
 	JWT_KEY = os.Getenv("JWT_KEY")
+	VALIDATION_LANG = os.Getenv("VALIDATION_LANG")
 	return nil
 }
