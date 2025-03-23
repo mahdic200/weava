@@ -1,4 +1,4 @@
-# Documentations for Weava
+# Documentation for Weava
 
 This is the source code for building `Weava` manual and you can make the newest version of docs for yourself locally or contribute to this project , which will be really appreciated ;) .
 
