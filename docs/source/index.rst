@@ -12,3 +12,4 @@ Table of Contents
    :maxdepth: 1
 
    introduction
+   prerequisites
