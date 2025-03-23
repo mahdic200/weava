@@ -1,6 +1,7 @@
 {
     "fields": {},
     "messages": {
+        "notFound": "{field} not found",
         "created": "{field} created successfully",
         "updated": "{field} updated successfully",
         "trash": "{field} moved to trash successfully",
