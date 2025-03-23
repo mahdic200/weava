@@ -16,6 +16,7 @@ var (
 	TIMEZONE        string
 	JWT_KEY         string
 	VALIDATION_LANG string
+	RESMSG_LANG     string
 	APP_DEBUG       bool
 )
 
@@ -33,6 +34,7 @@ func GetEnv() error {
 	TIMEZONE = os.Getenv("TIMEZONE")
 	JWT_KEY = os.Getenv("JWT_KEY")
 	VALIDATION_LANG = os.Getenv("VALIDATION_LANG")
+	RESMSG_LANG = os.Getenv("RESMSG_LANG")
 	if debug := os.Getenv("APP_DEBUG"); debug == "true" {
 		APP_DEBUG = true
 	} else {
