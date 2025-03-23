@@ -1,6 +1,7 @@
 package UserController
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/gofiber/fiber/v2"
@@ -9,6 +10,7 @@ import (
 	"github.com/mahdic200/weava/Models/User"
 	"github.com/mahdic200/weava/Providers"
 	"github.com/mahdic200/weava/Providers/Response"
+	"github.com/mahdic200/weava/Resources/UserResource"
 	"github.com/mahdic200/weava/Services/FileService"
 	"github.com/mahdic200/weava/Utils"
 	"github.com/mahdic200/weava/Utils/File"
@@ -58,7 +60,8 @@ func Update(c *fiber.Ctx) error {
 	old_file := File.PublicPath(user.Image)
 	new_file := ""
 	file, err := c.FormFile("image")
-	if err == nil {
+	fmt.Printf("printing data and file %#v %#v\n", data, file)
+	if file != nil {
 		fs := FileService.New(file)
 		if err := fs.SaveToPublic("uploads", "images", "user-profiles"); err != nil {
 			tx.Rollback()
@@ -68,6 +71,7 @@ func Update(c *fiber.Ctx) error {
 		}
 		new_file = fs.GetFinalPath()
 		data["image"] = fs.GetRelativePath()
+		fmt.Printf("Updated image key in data object : image file %#v\n", file)
 	}
 
 	if data["password"] != "" {
@@ -99,9 +103,13 @@ func Update(c *fiber.Ctx) error {
 			"message": Providers.ErrorProvider(err),
 		})
 	}
-	os.Remove(old_file)
+	if new_file != "" && File.Exists(File.PublicPath(old_file)) {
+		os.Remove(old_file)
+	}
+	User.Find(Config.DB, id, &user)
 	message, _ := Response.Message("user", "updated")
 	return c.Status(200).JSON(fiber.Map{
 		"message": message,
+		"data":    UserResource.Single(user),
 	})
 }
