@@ -13,3 +13,4 @@ Table of Contents
 
    introduction
    prerequisites
+   installation
