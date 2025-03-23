@@ -1,6 +1,7 @@
 package UserController
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/gofiber/fiber/v2"
@@ -55,10 +56,12 @@ func Update(c *fiber.Ctx) error {
 		})
 	}
 
+	/* old_file and new_file are absolute paths of files and theres no need of using
+	File.PublicPath() function for them */
 	old_file := File.PublicPath(user.Image)
 	new_file := ""
 	file, err := c.FormFile("image")
-	if err == nil {
+	if file != nil && err == nil {
 		fs := FileService.New(file)
 		if err := fs.SaveToPublic("uploads", "images", "user-profiles"); err != nil {
 			tx.Rollback()
@@ -68,6 +71,7 @@ func Update(c *fiber.Ctx) error {
 		}
 		new_file = fs.GetFinalPath()
 		data["image"] = fs.GetRelativePath()
+		fmt.Printf("Updated image key in data object : image file %#v\n", file)
 	}
 
 	if data["password"] != "" {
@@ -99,7 +103,10 @@ func Update(c *fiber.Ctx) error {
 			"message": Providers.ErrorProvider(err),
 		})
 	}
-	os.Remove(old_file)
+	if new_file != "" && File.Exists(old_file) {
+		os.Remove(old_file)
+	}
+	User.Find(Config.DB, id, &user)
 	message, _ := Response.Message("user", "updated")
 	return c.Status(200).JSON(fiber.Map{
 		"message": message,
