@@ -3,10 +3,13 @@ package Validation
 import (
 	"fmt"
 	"strings"
+
+	"github.com/mahdic200/weava/Config"
+	"github.com/mahdic200/weava/Providers/Translation"
 )
 
 func ErrorMessageProvider(field_name string, rule_name string, otherKeys map[string]string) (message string, err error) {
-	fields, messages, err := TranslationProvider()
+	fields, messages, err := Translation.GetTranslation(Config.VALIDATION_LANG, "VALIDATION_LANG", []string{"Lang", "Validation"})
 	if err != nil {
 		return message, err
 	}
