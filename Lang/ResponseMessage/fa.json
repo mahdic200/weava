@@ -1,0 +1,13 @@
+{
+    "fields": {
+        "user": "کاربر"
+    },
+    "messages": {
+        "notFound": "{field} یافت نشد",
+        "created": "{field} با موفقیت ساخته شد",
+        "updated": "{field} با موفقیت ویرایش شد",
+        "trash": "{field} به سطل زباله انتقال یافت",
+        "deleted": "{field} با موفقیت حذف دائم شد",
+        "emptyTrash": "{field} سطل زباله خالی شد"
+    }
+}
