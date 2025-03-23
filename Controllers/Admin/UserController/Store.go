@@ -7,6 +7,7 @@ import (
 	"github.com/mahdic200/weava/Config"
 	"github.com/mahdic200/weava/Models/User"
 	"github.com/mahdic200/weava/Providers"
+	"github.com/mahdic200/weava/Providers/Response"
 	"github.com/mahdic200/weava/Services/FileService"
 	"github.com/mahdic200/weava/Utils"
 	"github.com/mahdic200/weava/Utils/Http"
@@ -71,7 +72,8 @@ func Store(c *fiber.Ctx) error {
 			"message": Providers.ErrorProvider(err),
 		})
 	}
+	message, _ := Response.Message("user", "created")
 	return c.Status(200).JSON(fiber.Map{
-		"message": "User created successfully !",
+		"message": message,
 	})
 }
