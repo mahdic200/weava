@@ -5,6 +5,7 @@ import (
 	"github.com/mahdic200/weava/Config"
 	"github.com/mahdic200/weava/Models"
 	"github.com/mahdic200/weava/Models/User"
+	"github.com/mahdic200/weava/Resources/UserResource"
 	"github.com/mahdic200/weava/Utils/Http"
 )
 
@@ -21,6 +22,6 @@ func Show(c *fiber.Ctx) error {
 		})
 	}
 	return c.Status(200).JSON(fiber.Map{
-		"data": user,
+		"data": UserResource.Single(user),
 	})
 }
