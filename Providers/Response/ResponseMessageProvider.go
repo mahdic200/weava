@@ -19,7 +19,7 @@ func Message(field string, key string) (message string, err error) {
 	}
 	translatedMessage := messages[key]
 	if translatedMessage == "" {
-		return "Operation completed (this is the default message)", fmt.Errorf("error : no message is provided for this ResponseMessage")
+		return "default text for not found message", fmt.Errorf("error : no message is provided for this ResponseMessage")
 	}
 	translatedMessage = strings.ReplaceAll(translatedMessage, "{field}", translatedField)
 	return translatedMessage, nil
