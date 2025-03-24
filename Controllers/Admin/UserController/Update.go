@@ -1,7 +1,6 @@
 package UserController
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/gofiber/fiber/v2"
@@ -71,7 +70,6 @@ func Update(c *fiber.Ctx) error {
 		}
 		new_file = fs.GetFinalPath()
 		data["image"] = fs.GetRelativePath()
-		fmt.Printf("Updated image key in data object : image file %#v\n", file)
 	}
 
 	if data["password"] != "" {
