@@ -2,7 +2,6 @@ package FileService
 
 import (
 	"fmt"
-	"io"
 	"mime/multipart"
 	"os"
 	"path/filepath"
@@ -11,6 +10,7 @@ import (
 
 	"github.com/mahdic200/weava/Utils"
 	"github.com/mahdic200/weava/Utils/Constants"
+	"github.com/valyala/fasthttp"
 )
 
 // Define a regex to remove unwanted characters from filenames
@@ -75,33 +75,8 @@ func (fs *FileService) SaveToPublic(paths ...string) error {
 	os.MkdirAll(fs.finalDirPath(), os.ModePerm)
 
 	/* Now the path is initialized and new file could be placed in it safely without receiving any OS
-	   errors such as : "no such a file or directory" */
-
-	f, err := fs.file.Open()
-	if err != nil {
-		return err
-	}
-
-	/* Using defer function to close opened file in case of any unhandled panics */
-	defer func() {
-		f.Close()
-	}()
-
-	ff, osError := os.Create(fs.finalFilePath())
-
-	/* Using defer function to close opened file in case of any unhandled panics */
-	defer func() {
-		ff.Close()
-	}()
-
-	if osError != nil {
-		return fmt.Errorf("FileService Error , SaveToPublic Method : %s", err)
-	}
-	_, ioError := io.Copy(ff, f)
-	if ioError != nil {
-		return err
-	}
-	ff.Close()
+	errors such as : "no such a file or directory" */
+	fasthttp.SaveMultipartFile(fs.file, fs.finalFilePath())
 	return nil
 }
 
