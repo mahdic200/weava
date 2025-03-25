@@ -10,9 +10,6 @@ import (
 var DB *gorm.DB
 
 func Connect() error {
-	if err := GetEnv(); err != nil {
-		return fmt.Errorf("config, connect : %s", err.Error())
-	}
 	connection := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable TimeZone=%s", DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT, TIMEZONE)
 	db, err := gorm.Open(postgres.Open(connection), &gorm.Config{
 		SkipDefaultTransaction: true,
