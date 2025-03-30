@@ -1,0 +1,13 @@
+package Models
+
+import (
+	"time"
+)
+
+type Session struct {
+	Id         uint       `json:"id" gorm:"not null;primaryKey"`
+	User_id    uint       `json:"user_id" gorm:"not null;primaryKey"`
+	User       *User      `json:"user" gorm:"foreignKey:User_id"`
+	Created_at *time.Time `json:"created_at"`
+	Updated_at *time.Time `json:"updated_at"`
+}
