@@ -3,12 +3,17 @@ package Routes
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/mahdic200/weava/Controllers/Admin/UserController"
+	"github.com/mahdic200/weava/Controllers/AuthController"
+	"github.com/mahdic200/weava/Middlewares"
 	"github.com/mahdic200/weava/Validations/Admin/UserValidation"
+	"github.com/mahdic200/weava/Validations/Auth"
 )
 
 func SetupRoutes(app *fiber.App) {
 
-	adminGroup := app.Group("/admin")
+	app.Post("/login", Auth.Login(), AuthController.Login)
+
+	adminGroup := app.Group("/admin", Middlewares.AuthMiddleware)
 
 	userGroup := adminGroup.Group("/user")
 	userGroup.Get("/", UserController.Index).Name("admin.user.index")
