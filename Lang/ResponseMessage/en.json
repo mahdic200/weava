@@ -1,6 +1,7 @@
 {
     "fields": {},
     "messages": {
+        "wrongCredentials": "username or password is not correct",
         "notFound": "{field} not found",
         "created": "{field} created successfully",
         "updated": "{field} updated successfully",

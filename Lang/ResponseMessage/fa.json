@@ -1,8 +1,10 @@
 {
     "fields": {
-        "user": "کاربر"
+        "user": "کاربر",
+        "email": "ایمیل"
     },
     "messages": {
+        "wrongCredentials": "نام کاربری یا گذرواژه نادرست است",
         "notFound": "{field} یافت نشد",
         "created": "{field} با موفقیت ساخته شد",
         "updated": "{field} با موفقیت ویرایش شد",
