@@ -20,6 +20,7 @@ func SetupRoutes(app *fiber.App) {
 	userGroup.Get("/show/:id", UserController.Show).Name("admin.user.show")
 	userGroup.Post("/store", UserValidation.Store(), UserController.Store).Name("admin.user.store")
 	userGroup.Post("/update/:id", UserValidation.Update(), UserController.Update).Name("admin.user.update")
+	userGroup.Post("/delete/:id", UserController.Delete).Name("admin.user.delete")
 
 	/* Static file rendering */
 	app.Static("/", "public")
