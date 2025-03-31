@@ -36,7 +36,7 @@ func Update(c *fiber.Ctx) error {
 	}
 
 	var user Models.User
-	User.Find(tx, id, &user)
+	User.Find(tx.Where("deleted_at IS NULL"), id, &user)
 	if user.Id == 0 {
 		message, _ := Response.Message("user", "notFound")
 		return c.Status(404).JSON(fiber.Map{
