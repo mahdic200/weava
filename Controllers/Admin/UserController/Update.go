@@ -105,7 +105,6 @@ func Update(c *fiber.Ctx) error {
 	if new_file != "" && File.Exists(old_file) {
 		os.Remove(old_file)
 	}
-	User.Find(Config.DB, id, &user)
 	message, _ := Response.Message("user", "updated")
 	return c.Status(200).JSON(fiber.Map{
 		"message": message,
