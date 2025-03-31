@@ -23,6 +23,7 @@ func SetupRoutes(app *fiber.App) {
 	userGroup.Post("/delete/:id", UserController.Delete).Name("admin.user.delete")
 	userGroup.Get("/restore/:id", UserController.Restore).Name("admin.user.restore")
 	userGroup.Get("/trash", UserController.Trash).Name("admin.user.trash")
+	userGroup.Post("/force-delete/:id", UserController.ForceDelete).Name("admin.user.force-delete")
 
 	/* Static file rendering */
 	app.Static("/", "public")
