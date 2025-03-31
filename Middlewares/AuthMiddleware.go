@@ -30,8 +30,8 @@ func AuthMiddleware(c *fiber.Ctx) error {
 
 	entity_id, table_name, err := Utils.VerifyToken(tokenSplit[1])
 	if err != nil {
-		return c.Status(500).JSON(fiber.Map{
-			"message": Providers.ErrorProvider(err),
+		return c.Status(400).JSON(fiber.Map{
+			"message": "Invalid token",
 		})
 	} else if table_name != "sessions" {
 		return c.Status(401).JSON(fiber.Map{
