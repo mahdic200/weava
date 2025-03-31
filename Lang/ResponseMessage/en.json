@@ -8,6 +8,6 @@
         "trashed": "{field} moved to trash successfully",
         "restored": "{field} is restored from trash successfully",
         "deleted": "{field} hard deleted successfully",
-        "emptyTrash": "{field} trash has been cleaned successfully"
+        "clearedTrash": "{field} trash has been cleared successfully"
     }
 }

@@ -1,6 +1,7 @@
 {
     "fields": {
         "user": "کاربر",
+        "users": "کاربران",
         "email": "ایمیل"
     },
     "messages": {
@@ -11,6 +12,6 @@
         "trashed": "{field} به سطل زباله انتقال یافت",
         "restored": "{field} از سطل زباله بازیابی شد",
         "deleted": "{field} با موفقیت حذف دائم شد",
-        "emptyTrash": "{field} سطل زباله خالی شد"
+        "clearedTrash": "سطل زباله {field} خالی شد"
     }
 }
