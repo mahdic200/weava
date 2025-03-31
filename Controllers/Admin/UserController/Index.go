@@ -11,8 +11,9 @@ import (
 
 func Index(c *fiber.Ctx) error {
 	var users []Models.User
-	tx := Config.DB.Table("users").Order("id")
+	tx := Config.DB.Table("users").Where("deleted_at IS NULL")
 	tx.Order("id")
+
 	var metadata Http.PaginationMetadata
 	tx, metadata = User.Paginate(tx, c)
 	tx.Find(&users)
