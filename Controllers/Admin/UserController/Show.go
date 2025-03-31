@@ -16,7 +16,7 @@ func Show(c *fiber.Ctx) error {
 		return c.Status(200).JSON(id_err)
 	}
 	var user Models.User
-	User.Find(Config.DB, id, &user)
+	User.Find(Config.DB.Where("deleted_at IS NULL"), id, &user)
 	message, _ := Response.Message("user", "notFound")
 	if user.Id == 0 {
 		return c.Status(404).JSON(fiber.Map{
