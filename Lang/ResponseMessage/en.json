@@ -6,6 +6,7 @@
         "created": "{field} created successfully",
         "updated": "{field} updated successfully",
         "trashed": "{field} moved to trash successfully",
+        "restored": "{field} is restored from trash successfully",
         "deleted": "{field} hard deleted successfully",
         "emptyTrash": "{field} trash has been cleaned successfully"
     }

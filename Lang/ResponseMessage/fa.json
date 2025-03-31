@@ -9,6 +9,7 @@
         "created": "{field} با موفقیت ساخته شد",
         "updated": "{field} با موفقیت ویرایش شد",
         "trashed": "{field} به سطل زباله انتقال یافت",
+        "restored": "{field} از سطل زباله بازیابی شد",
         "deleted": "{field} با موفقیت حذف دائم شد",
         "emptyTrash": "{field} سطل زباله خالی شد"
     }
