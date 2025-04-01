@@ -18,7 +18,7 @@ type PaginationMetadata struct {
 }
 
 func PaginateMetadata(page int64, count int64, limit int64) PaginationMetadata {
-	total_pages := int(math.Floor(float64(count) / float64(limit)))
+	total_pages := int(math.Ceil(float64(count) / float64(limit)))
 	current := int(page)
 	if current > total_pages {
 		current = total_pages
