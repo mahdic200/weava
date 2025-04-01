@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"os"
 	"time"
 
 	"github.com/mahdic200/weava/Config"
@@ -18,9 +19,11 @@ var seedCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		tx := Config.DB
 		pass, _ := Utils.GenerateHashPassword("password")
-		if err := User.Create(tx, map[string]string{"first_name": "admin", "email": "admin@gmail.com", "phone": "09531532475", "password": pass, "created_at": time.Now().String()}); err != nil {
-			fmt.Printf("Seeded the database successfully\n")
+		if err := User.Create(tx, map[string]string{"first_name": "admin", "email": "admin@gmail.com", "phone": "09531532475", "password": pass, "created_at": time.Now().String()}).Error; err != nil {
+			fmt.Printf("Could not seed the database : %s\n", err.Error())
+			os.Exit(2)
 		}
+		fmt.Printf("Seeded the database successfully\n")
 	},
 }
 
