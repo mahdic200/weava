@@ -16,7 +16,7 @@ func Index(c *fiber.Ctx) error {
 
 	var metadata Http.PaginationMetadata
 	tx, metadata = User.Paginate(tx, c)
-	tx.Find(&users)
+	tx.Scan(&users)
 	return c.Status(200).JSON(fiber.Map{
 		"data":     UserResource.Collection(users),
 		"metadata": metadata,
