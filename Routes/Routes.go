@@ -12,6 +12,7 @@ import (
 func SetupRoutes(app *fiber.App) {
 
 	app.Post("/login", Auth.Login(), AuthController.Login)
+	app.Post("/register", Auth.Register(), AuthController.Register)
 
 	adminGroup := app.Group("/admin", Middlewares.AuthMiddleware)
 
