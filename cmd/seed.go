@@ -8,6 +8,7 @@ import (
 	"github.com/mahdic200/weava/Config"
 	"github.com/mahdic200/weava/Models/User"
 	"github.com/mahdic200/weava/Utils"
+	"github.com/mahdic200/weava/Utils/ProgressBars/ProgressBar"
 	"github.com/spf13/cobra"
 )
 
@@ -17,26 +18,30 @@ var seedCmd = &cobra.Command{
 	Short: "Seeds the database",
 	Long:  `Seeds the database`,
 	Run: func(cmd *cobra.Command, args []string) {
+		bar := ProgressBar.Default("Seeding [green]Database[reset] :", 100_000)
+
 		tx := Config.DB
 		pass, _ := Utils.GenerateHashPassword("password")
-		if err := User.Create(tx, map[string]string{"first_name": "admin", "email": "admin@gmail.com", "phone": "09531532475", "password": pass, "created_at": time.Now().String()}).Error; err != nil {
-			fmt.Printf("Could not seed the database : %s\n", err.Error())
-			os.Exit(2)
+
+		for i := 1; i <= 100_000; i++ {
+			data := map[string]string{
+				"first_name": "admin",
+				"email":      fmt.Sprintf("user_%d@gmail.com", i),
+				"phone":      fmt.Sprintf("0911%07d", i),
+				"password":   pass,
+				"created_at": time.Now().String(),
+			}
+			if err := User.Create(tx, data).Error; err != nil {
+				fmt.Printf("\nCould not seed the database : %s\n", err.Error())
+				bar.Exit()
+				os.Exit(2)
+			}
+			bar.Add(1)
 		}
-		fmt.Printf("Seeded the database successfully\n")
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(seedCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// seedCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// seedCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// seedCmd.Flags().IntVarP()
 }
