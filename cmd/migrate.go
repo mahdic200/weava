@@ -6,6 +6,7 @@ import (
 
 	"github.com/mahdic200/weava/Config"
 	"github.com/mahdic200/weava/Models"
+	"github.com/mahdic200/weava/Utils/ProgressBars/ProgressBar"
 	"github.com/spf13/cobra"
 )
 
@@ -17,24 +18,36 @@ var migrateCmd = &cobra.Command{
 	Short: "Makes the tables",
 	Long:  `Migrates the database based on models`,
 	Run: func(cmd *cobra.Command, args []string) {
+		models := []any {
+			Models.Admin{},
+			Models.User{},
+			Models.AdminSession{},
+			Models.Session{},
+		}
+		total := len(models)
 		tx := Config.DB
-		if force {
 
-			fmt.Printf("Dropping all tables\n")
-			if err := tx.Migrator().DropTable(&Models.Session{}, &Models.User{}); err != nil {
-				fmt.Printf("%s\n", err.Error())
-				os.Exit(2)
+		if force {
+			bar := ProgressBar.Default("Dropping All [green]Tables[reset] :", total)
+			for _, model := range models {
+				if err := tx.Migrator().DropTable(&model); err != nil {
+					fmt.Printf("%s\n", err)
+					bar.Exit()
+					os.Exit(2)
+				}
+				bar.Add(1)
 			}
 		}
 
-		if err := Config.DB.AutoMigrate(
-			&Models.User{},
-			&Models.Session{},
-		); err != nil {
-			fmt.Printf("%s\n", err)
-			os.Exit(2)
-		} else {
-			fmt.Printf("Migration completed successfully\n")
+		bar := ProgressBar.Default("Migrating [green]Tables[reset] :", total)
+
+		for _, model := range models {
+			if err := tx.AutoMigrate(&model); err != nil {
+				fmt.Printf("%s\n", err)
+				bar.Exit()
+				os.Exit(2)
+			}
+			bar.Add(1)
 		}
 	},
 }
@@ -43,3 +56,5 @@ func init() {
 	rootCmd.AddCommand(migrateCmd)
 	migrateCmd.Flags().BoolVarP(&force, "force", "f", false, "Clears all tables and then migrates")
 }
+
+
