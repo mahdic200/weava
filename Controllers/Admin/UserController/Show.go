@@ -4,7 +4,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/mahdic200/weava/Config"
 	"github.com/mahdic200/weava/Models"
-	"github.com/mahdic200/weava/Models/User"
 	"github.com/mahdic200/weava/Providers/Response"
 	"github.com/mahdic200/weava/Resources/UserResource"
 	"github.com/mahdic200/weava/Utils/Http"
@@ -16,7 +15,7 @@ func Show(c *fiber.Ctx) error {
 		return c.Status(200).JSON(id_err)
 	}
 	var user Models.User
-	User.Find(Config.DB.Where("deleted_at IS NULL"), id, &user)
+	Config.DB.Where("deleted_at IS NULL").Find(&user, id)
 	message, _ := Response.Message("user", "notFound")
 	if user.Id == 0 {
 		return c.Status(404).JSON(fiber.Map{
