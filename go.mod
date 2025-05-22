@@ -3,6 +3,7 @@ module github.com/mahdic200/weava
 go 1.24.0
 
 require (
+	github.com/coder/websocket v1.8.13
 	github.com/gofiber/fiber/v2 v2.52.6
 	github.com/golang-jwt/jwt/v5 v5.2.1
 	github.com/joho/godotenv v1.5.1
