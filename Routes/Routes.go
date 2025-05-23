@@ -31,7 +31,7 @@ func SetupRoutes(app *fiber.App) {
 	userGroup.Post("/clear-trash", UserController.ClearTrash).Name("admin.user.clear-trash")
 
 	// Websocket routes
-	wsGroup := app.Group("/ws", Middlewares.AdminAuthMiddleware)
+	wsGroup := app.Group("/ws", Middlewares.AuthMiddleware)
 	wsGroup.Use(Middlewares.WebsocketInitMiddleware)
 	wsGroup.Get("/:id", HomeController.Index)
 
