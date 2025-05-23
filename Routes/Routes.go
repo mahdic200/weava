@@ -4,6 +4,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/mahdic200/weava/Controllers/Admin/UserController"
 	"github.com/mahdic200/weava/Controllers/AuthController"
+	"github.com/mahdic200/weava/Controllers/Websocket/HomeController"
 	"github.com/mahdic200/weava/Middlewares"
 	"github.com/mahdic200/weava/Validations/Admin/UserValidation"
 	"github.com/mahdic200/weava/Validations/Auth"
@@ -14,7 +15,7 @@ func SetupRoutes(app *fiber.App) {
 	app.Post("/admin-login", Auth.Login(), AuthController.AdminLogin)
 	app.Post("/login", Auth.Login(), AuthController.Login)
 	app.Post("/register", Auth.Register(), AuthController.Register)
-	
+
 	adminGroup := app.Group("/admin", Middlewares.AdminAuthMiddleware)
 	adminGroup.Post("/logout", AuthController.AdminLogout)
 
@@ -28,6 +29,11 @@ func SetupRoutes(app *fiber.App) {
 	userGroup.Get("/trash", UserController.Trash).Name("admin.user.trash")
 	userGroup.Post("/force-delete/:id", UserController.ForceDelete).Name("admin.user.force-delete")
 	userGroup.Post("/clear-trash", UserController.ClearTrash).Name("admin.user.clear-trash")
+
+	// Websocket routes
+	wsGroup := app.Group("/ws", Middlewares.AdminAuthMiddleware)
+	wsGroup.Use(Middlewares.WebsocketInitMiddleware)
+	wsGroup.Get("/:id", HomeController.Index)
 
 	/* Static file rendering */
 	app.Static("/", "public")
