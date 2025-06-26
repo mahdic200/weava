@@ -1,19 +1,25 @@
 package HomeController
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/gofiber/contrib/websocket"
+	"github.com/mahdic200/weava/Models"
 	"github.com/mahdic200/weava/Websocket"
-	"github.com/mahdic200/weava/Utils"
 )
 
 var manager = Websocket.NewManager()
 
 var Index = websocket.New(func(c *websocket.Conn) {
-	// Get client ID from URL parameters
-	clientID := Utils.StandardRandomString(16)
-	roomID := "chat" // Or get from params/query
+	/* Getting current logged in client's ID from user object which is
+	initiated from AuthMiddleware, I skipped the error check because
+	AuthMiddleware makes sure that we have a logged in user, and if we
+	don't pass the AuthMiddleware accidentally to the router or we use
+	the wrong keyword for Locals method the program will panic */
+	var user, _ = c.Locals("user").(Models.User)
+	clientID := fmt.Sprintf("%v", user.Id)
+	roomID := "chat"
 
 	room := manager.GetRoom(roomID)
 	if room == nil {
