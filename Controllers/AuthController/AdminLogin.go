@@ -45,13 +45,19 @@ func AdminLogin(c *fiber.Ctx) error {
 		Admin_id:    admin.Id,
 		Created_at: &now,
 	}
-	if err := tx.Create(&new_token).Error; err != nil {
+	session := tx.Create(&new_token)
+	if session.Error != nil {
 		return c.Status(500).JSON(fiber.Map{
 			"message": Providers.ErrorProvider(err),
 		})
 	}
 	token, expire_time, err := Utils.CreateToken(int64(new_token.Id), "sessions", remember_me)
 	if err != nil {
+		return c.Status(500).JSON(fiber.Map{
+			"message": Providers.ErrorProvider(err),
+		})
+	}
+	if session.Update("token_string", token).Error != nil {
 		return c.Status(500).JSON(fiber.Map{
 			"message": Providers.ErrorProvider(err),
 		})
