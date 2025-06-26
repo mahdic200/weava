@@ -29,6 +29,7 @@ func NewManager() *Manager {
 	}
 }
 
+/* Creates a new room and the returned value is a pointer to the Room instance */
 func (m *Manager) CreateRoom(roomID string) *Room {
 	m.RoomsMu.Lock()
 	defer m.RoomsMu.Unlock()
@@ -40,24 +41,28 @@ func (m *Manager) CreateRoom(roomID string) *Room {
 	return room
 }
 
+/* Tries to get a room and the returned value maybe null, so it must be double checked */
 func (m *Manager) GetRoom(roomID string) *Room {
 	m.RoomsMu.RLock()
 	defer m.RoomsMu.RUnlock()
 	return m.Rooms[roomID]
 }
 
+/* Adds a client to a room */
 func (r *Room) AddClient(client *Client) {
 	r.ClientsMu.Lock()
 	defer r.ClientsMu.Unlock()
 	r.Clients[client] = true
 }
 
+/*Removes a client from a room, it may be used in defer functions in order to avoid memory leaks */
 func (r *Room) RemoveClient(client *Client) {
 	r.ClientsMu.Lock()
 	defer r.ClientsMu.Unlock()
 	delete(r.Clients, client)
 }
 
+/* This function broadcasts a message to the all other clients in the room */
 func (r *Room) Broadcast(sender *Client, mt int, message []byte) {
 	r.ClientsMu.Lock()
 	defer r.ClientsMu.Unlock()
@@ -78,27 +83,37 @@ func init() {
 
 // FindClientByID finds a client in a specific room
 func (m *Manager) FindClientByID(roomID string, clientID string) *Client {
+	/* Locking the mutex in order to avoid logical runtime errors, like the mutex be
+	be manipulated by multiple requests */
 	m.RoomsMu.RLock()
+	/* Unlocking the mutex in order for other threads to be able to use it */
 	defer m.RoomsMu.RUnlock()
 
+	/* if the room does not exist we will return nil (empty) */
 	room := m.Rooms[roomID]
 	if room == nil {
 		return nil
 	}
 
+	/* Locking the  ClientsMutex in order to read the clients list safely */
 	room.ClientsMu.Lock()
+	/* Unlocking the mutex after we are finished reading clients list */
 	defer room.ClientsMu.Unlock()
 
+	/* Looping through clients list in order to find our desired client */
 	for client := range room.Clients {
 		if client.ID == clientID {
 			return client
 		}
 	}
+
+	/* Returning nil(empty) if we couldn't find the client */
 	return nil
 }
 
 // SendToClient sends a message to a specific client in a specific room
 func (m *Manager) SendToClient(roomID string, clientID string, messageType string, data interface{}) error {
+	/* Try to find the client by it's ID */
 	client := m.FindClientByID(roomID, clientID)
 	if client == nil {
 		return fmt.Errorf("client not found in room %s", roomID)
