@@ -20,15 +20,25 @@ var routesCmd = &cobra.Command{
 	Short: "Shows defined routes list",
 	Long:  `shows a list of defined routes in your application .`,
 	Run: func(cmd *cobra.Command, args []string) {
+		type SingleRoute struct {
+			Name   string
+			Path   string
+			Method string
+		}
+		routes := make([]SingleRoute, 0)
+	biggerLoop:
 		for _, route := range Config.App.GetRoutes() {
 			if route.Path != "/*" && route.Name != "" {
-				if strings.Contains(route.Name, "index") && route.Method == "HEAD" {
-					continue
+				for _, i_route := range routes {
+					if i_route.Name == route.Name || (strings.Contains(route.Name, "index") && route.Method == "HEAD") {
+						continue biggerLoop
+					}
 				}
-				// fmt.Printf("path : %#v, name : %#v, method : %#v\n", route.Path, route.Name, route.Method)
-				fmt.Printf("path : %#v, method : %#v, name : %#v\n", route.Path, route.Method, route.Name)
-				// routes = append(routes, Route{route.Name, route.Method, route.Path})
+				routes = append(routes, SingleRoute{Name: route.Name, Path: route.Path, Method: route.Method})
 			}
+		}
+		for _, route := range routes {
+			fmt.Printf("%v\n", route)
 		}
 	},
 }
