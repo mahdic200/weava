@@ -2,14 +2,14 @@
   <a href="#">
     <picture>
       <source height="125" media="(prefers-color-scheme: dark)" srcset="https://mahdic200.ir/weava-logo-dark.png">
-      <img height="125" styles="object-fit:contain;" alt="Fiber" src="https://mahdic200.ir/weava-logo.png">
+      <img height="125" styles="object-fit:contain;" alt="Weava" src="https://mahdic200.ir/weava-logo.png">
     </picture>
   </a>
   <br>
   <a href="#">
     <picture>
       <source height="40" media="(prefers-color-scheme: dark)" srcset="https://mahdic200.ir/weava-slogan-dark.png">
-      <img height="40" styles="object-fit:contain;" alt="Fiber" src="https://mahdic200.ir/weava-slogan.png">
+      <img height="40" styles="object-fit:contain;" alt="Weava" src="https://mahdic200.ir/weava-slogan.png">
     </picture>
   </a>
 </h1>
